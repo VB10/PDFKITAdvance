@@ -13,71 +13,93 @@ class PDFViewController: UIPageViewController , UIPageViewControllerDataSource, 
     var controllers = [UIViewController]()
     var pdfDocument : PDFDocument?
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        
-        if UIDevice.current.orientation.isLandscape{
-            
-//            (controllers[0].view as! PDFView).displayMode = .twoUp
-//
-            (controllers[0].view as! PDFView).autoScales = true
-        }
-        else{
-//            (controllers[0].view as! PDFView).displayMode = .singlePage
-//            (controllers[0].view as! PDFView).sizeToFit()
-            (controllers[0].view as! PDFView).autoScales = false
-
-        }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        dataSource = self
+        delegate = self
+        view.backgroundColor = UIColor.gray
+        setupPDFView()
     }
-        
-        func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-            guard let index =  controllers.index(of: viewController) else { return nil}
-            if index < 1 {
-                return nil
-            }
-            return controllers[index - 1]
+    
+    func setupPDFView(){
+        guard let path = Bundle.main.path(forResource: "swift", ofType: "pdf") else {
+            print("pdf file not found")
+            return }
+        let url = URL(fileURLWithPath: path)
+        pdfDocument = PDFDocument(url: url)
+        guard addViewController() else {
+            return
         }
+        //controllers[0] must because is required spinlocation.min params.
+        setViewControllers([controllers[0]], direction: .forward, animated: true)
         
-        func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-            guard let index =  controllers.index(of: viewController) else { return nil }
-            return controllers[index + 2]
+    }
+    
+    /**
+     Creates a add VC  for a page view controller.
+     
+     - Parameter : -
+     
+     - Throws: `Index out of bound's fix guardlet.
+     
+     - Returns: A new boolean value saying add complete & add fail(last page & not found)
+     */
+    func addViewController() -> Bool {
+        for index in 0...5 {
+            let pdfView: PDFView = PDFView(frame: self.view.frame)
+            guard let page = self.pdfDocument?.page(at: index) else {
+                print("page not found.")
+                return  false}
+            pdfView.document = pdfDocument
+            pdfView.displayMode = .singlePage
+            pdfView.usePageViewController(true)
+            pdfView.isUserInteractionEnabled = false
+            pdfView.go(to: page)
+            pdfView.autoScales = true
+            let vc = UIViewController()
+            vc.view = pdfView
+            controllers.append(vc)
         }
-        
-        
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            dataSource = self
-            delegate = self
-            guard let path = Bundle.main.path(forResource: "swift", ofType: "pdf") else { return }
-            
-            let url = URL(fileURLWithPath: path)
-            pdfDocument = PDFDocument(url: url)
-            // Do any additional setup after loading the view.
-            
-            addPageVC(start: 0, end: 15)
-            setViewControllers([(controllers[0])], direction: .forward, animated: true, completion: nil)
+        return true
+    }
+    
+    
+    /**
+     Creates a curl animation left (back) comeback a one page.
+     
+     - Parameter pVC : main PVC , VCBefore a before page
+     
+     - Throws: `index out of range` ``
+     
+     - Returns: A new string saying hello to `recipient`.
+     */
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        guard let index = controllers.index(of: viewController) else { return nil }
+        guard index > 0 else {
+            return nil
         }
-        
-        
-        
-        func addPageVC(start : Int, end : Int)  {
-            for index in start...end {
-                let pdfView: PDFView = PDFView(frame: self.view.frame)
-                let page: PDFPage = pdfDocument!.page(at: index)!
-                pdfView.document = pdfDocument
-                pdfView.displayMode = . twoUp
-                pdfView.isUserInteractionEnabled = false
-                pdfView.go(to: page)
-                pdfView.autoScales = false
-                
-                pdfView.minScaleFactor = pdfView.scaleFactorForSizeToFit
-                //            pdfView.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-                //            pdfView.documentView?.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-                
-                let vc = ViewController()
-                vc.view = pdfView
-                vc.view.backgroundColor = UIColor.gray
-                self.controllers.append(vc)
-            }
+        return controllers[index - 1]
+    }
+    
+    /**
+     Creates a personalized greeting for a recipient.
+     
+     - Parameter recipient: The person being greeted.
+     
+     - Throws: `MyError.invalidRecipient`
+     if `recipient` is "Derek"
+     (he knows what he did).
+     
+     - Returns: A new string saying hello to `recipient`.
+     */
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        guard let index = controllers.index(of: viewController) else { return nil }
+        guard index < controllers.count - 1 else {
+            return nil
         }
-        
+        return controllers[index + 1]
+
+    }
+    
 }
