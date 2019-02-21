@@ -13,6 +13,7 @@
 		35FD8077220CF1FC004DDD9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35FD8076220CF1FC004DDD9E /* Assets.xcassets */; };
 		35FD807A220CF1FC004DDD9E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35FD8078220CF1FC004DDD9E /* LaunchScreen.storyboard */; };
 		6C5FBC18220D5BBB00C435F7 /* swift.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 6C5FBC17220D5BBB00C435F7 /* swift.pdf */; };
+		6C65AEDE221EDBA700748A63 /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C65AEDD221EDBA700748A63 /* CustomViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		35FD8079220CF1FC004DDD9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		35FD807B220CF1FC004DDD9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6C5FBC17220D5BBB00C435F7 /* swift.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = swift.pdf; sourceTree = "<group>"; };
+		6C65AEDD221EDBA700748A63 /* CustomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				35FD8078220CF1FC004DDD9E /* LaunchScreen.storyboard */,
 				35FD807B220CF1FC004DDD9E /* Info.plist */,
 				353404AD221CBC94003D6AB8 /* PDFViewController.swift */,
+				6C65AEDD221EDBA700748A63 /* CustomViewController.swift */,
 			);
 			path = Tesx;
 			sourceTree = "<group>";
@@ -139,6 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C65AEDE221EDBA700748A63 /* CustomViewController.swift in Sources */,
 				35FD8070220CF1FA004DDD9E /* AppDelegate.swift in Sources */,
 				353404AE221CBC94003D6AB8 /* PDFViewController.swift in Sources */,
 			);
