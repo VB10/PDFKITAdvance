@@ -14,6 +14,8 @@ class PDFViewController: UIPageViewController , UIPageViewControllerDataSource, 
     var pdfDocument : PDFDocument?
     var currentPageNumber : Int = 0
     var _controllers = [Int: UIViewController]()
+    var _isBack : Bool = false
+    var _isAnimationComplete : Bool = true
     
     
     override func viewDidLoad() {
@@ -21,12 +23,12 @@ class PDFViewController: UIPageViewController , UIPageViewControllerDataSource, 
         dataSource = self
         delegate = self
         view.backgroundColor = UIColor.gray
-        
         setupPDFView()
+  
     }
     
     
-    
+ 
 
     
     func setupPDFView(){
@@ -42,18 +44,25 @@ class PDFViewController: UIPageViewController , UIPageViewControllerDataSource, 
             return
         }
         //controllers[0] must because is required spinlocation.min params.
-        setViewControllers([_controllers[0]!], direction: .forward, animated: true)
+        setViewControllers([controllers[0]], direction: .forward, animated: true)
         
     }
     
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         
-        //        currentPageNumber += 1
-        guard addViewController(to:  currentPageNumber + 1) else {
-            print("error")
-            return
+        if completed  &&  finished {
+            
+            _isAnimationComplete = true
+            currentPageNumber += _isBack ?   -1 :   1
+            let nextPageNumber = _isBack ?  currentPageNumber - 1 : currentPageNumber + 1
+            guard addViewController(to:  nextPageNumber) else {
+                print("error not added")
+                currentPageNumber = 0
+                return
+            }
         }
+  
     }
     /**
      Creates a add VC  for a page view controller.
@@ -64,35 +73,18 @@ class PDFViewController: UIPageViewController , UIPageViewControllerDataSource, 
      
      - Returns: A new boolean value saying add complete & add fail(last page & not found)
      */
-//    func addViewController() -> Bool {
-//
-//        let pdfView: PDFView = PDFView(frame: self.view.frame)
-//
-//
-//        guard let page = self.pdfDocument?.page(at: 0) else {
-//            print("page not found.")
-//            return  false}
-//        pdfView.document = pdfDocument
-//        pdfView.displayMode = .singlePage
-//        pdfView.usePageViewController(true)
-//        pdfView.isUserInteractionEnabled = false
-//        pdfView.go(to: page)
-//        pdfView.autoScales = true
-//        let vc = UIViewController()
-//        vc.view = pdfView
-//
-//
-//
-//        //            controllers.append(vc)
-//        _controllers[currentPageNumber] = vc
-//        return true
-//    }
-    
+
     func addViewController(to index: Int) -> Bool {
         
         
         let pdfView: PDFView = PDFView(frame: self.view.frame)
         guard let page = self.pdfDocument?.page(at: index) else {
+            if currentPageNumber == 0 {
+                if controllers.count > 2 {
+                    controllers.remove(at: 2)
+                }
+            }
+
             print("page not found.")
             return  false}
         pdfView.document = pdfDocument
@@ -103,38 +95,27 @@ class PDFViewController: UIPageViewController , UIPageViewControllerDataSource, 
         pdfView.autoScales = true
         let vc = UIViewController()
         vc.view = pdfView
-        _controllers[index] = vc
+      
+        vc.viewDidAppear(true)
         
+      
+        if _isBack {
         
-        if _controllers.count > 3  {
-            _controllers.removeValue(forKey: 0)
+                controllers.insert(vc, at: 0)
+                if controllers.count > 3  {
+                    controllers.remove(at: 3)
+                }
+            
+          
+        } else {
+            controllers.append(vc)
+            if controllers.count > 3  {
+                controllers.remove(at: 0)
+            }
         }
-        //
-        
-        return true
-    }
-    
-    func addViewControllerBack(to index: Int) -> Bool {
-        
-        let pdfView: PDFView = PDFView(frame: self.view.frame)
-        guard let page = self.pdfDocument?.page(at: currentPageNumber ) else {
-            print("page not found.")
-            return  false}
-        pdfView.document = pdfDocument
-        pdfView.displayMode = .singlePage
-        pdfView.usePageViewController(true)
-        pdfView.isUserInteractionEnabled = false
-        pdfView.go(to: page)
-        pdfView.autoScales = true
-        let vc = UIViewController()
-        vc.view = pdfView
-        
-        let _vcCustom = CustomViewController()
-        _vcCustom.view  = pdfView
-        _controllers[currentPageNumber] = _vcCustom
-        if controllers.count > 3  {
-//            _controllers.remove(at: 3 )
-        }
+      
+       
+      
         //
         
         return true
@@ -153,12 +134,11 @@ class PDFViewController: UIPageViewController , UIPageViewControllerDataSource, 
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
-        
-        
-        guard addViewControllerBack(to:  1) else {
+        _isBack = true
+        if currentPageNumber == 0  {
             return nil
         }
-        return _controllers[currentPageNumber]
+        return controllers.first
         
     }
     
@@ -179,17 +159,20 @@ class PDFViewController: UIPageViewController , UIPageViewControllerDataSource, 
         //            return nil
         //        }
         
-        
-        currentPageNumber += 1
-        //        guard addViewControllerBack(to: index - 1 ) else {
-        //            return nil
-        //        }
-        
-        
-        //        let currentController = _controllers[currentPageNumber]
-        
-        return _controllers[currentPageNumber]
+        _isBack = false
+        return controllers.last
         
     }
     
 }
+
+//extension MyPageVC: UIPageViewControllerDelegate {
+//
+//    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+//        self.view.isUserInteractionEnabled = false
+//    }
+//
+//    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+//        self.view.isUserInteractionEnabled = true
+//    }
+//}
