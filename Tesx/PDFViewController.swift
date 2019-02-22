@@ -9,14 +9,17 @@
 import UIKit
 import PDFKit
 
-class PDFViewController: UIPageViewController , UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+class PDFViewController: UIPageViewController , UIPageViewControllerDataSource , PDFViewDelegate , PDFDocumentDelegate  {
+    
+   
     var controllers = [UIViewController]()
     var pdfDocument : PDFDocument?
     var currentPageNumber : Int = 0
     var _controllers = [Int: UIViewController]()
     var _isBack : Bool = false
     var _isAnimationComplete : Bool = true
-    
+    var isTransitioning = false
+    var viewd : PDFThumbnailView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,15 +27,27 @@ class PDFViewController: UIPageViewController , UIPageViewControllerDataSource, 
         delegate = self
         view.backgroundColor = UIColor.gray
         setupPDFView()
-  
+        
+    
+//        viewd = PDFThumbnailView()
+//
+//        viewd!.heightAnchor.constraint(equalToConstant: 120).isActive = true
+//
+//        viewd!.thumbnailSize = CGSize(width: 100, height: 100)
+//        viewd!.layoutMode = .horizontal
+//            self.view.addSubview(viewd!)
+        
+    }
+    func pdfViewWillClick(onLink sender: PDFView, with url: URL) {
+        print("geldi")
     }
     
-    
- 
-
+    func pdfViewPerformGo(toPage sender: PDFView) {
+        print("sss")
+    }
     
     func setupPDFView(){
-        guard let path = Bundle.main.path(forResource: "swift", ofType: "pdf") else {
+        guard let path = Bundle.main.path(forResource: "sw2", ofType: "pdf") else {
             print("pdf file not found")
             return }
         let url = URL(fileURLWithPath: path)
@@ -48,22 +63,6 @@ class PDFViewController: UIPageViewController , UIPageViewControllerDataSource, 
         
     }
     
-    
-    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        
-        if completed  &&  finished {
-            
-            _isAnimationComplete = true
-            currentPageNumber += _isBack ?   -1 :   1
-            let nextPageNumber = _isBack ?  currentPageNumber - 1 : currentPageNumber + 1
-            guard addViewController(to:  nextPageNumber) else {
-                print("error not added")
-                currentPageNumber = 0
-                return
-            }
-        }
-  
-    }
     /**
      Creates a add VC  for a page view controller.
      
@@ -73,7 +72,7 @@ class PDFViewController: UIPageViewController , UIPageViewControllerDataSource, 
      
      - Returns: A new boolean value saying add complete & add fail(last page & not found)
      */
-
+    
     func addViewController(to index: Int) -> Bool {
         
         
@@ -84,38 +83,41 @@ class PDFViewController: UIPageViewController , UIPageViewControllerDataSource, 
                     controllers.remove(at: 2)
                 }
             }
-
+            
             print("page not found.")
-            return  false}
+        return  false}
         pdfView.document = pdfDocument
         pdfView.displayMode = .singlePage
-        pdfView.usePageViewController(true)
-        pdfView.isUserInteractionEnabled = false
+        
+        pdfView.isUserInteractionEnabled = true
         pdfView.go(to: page)
         pdfView.autoScales = true
+        
+        pdfView.delegate = self
+        
         let vc = UIViewController()
         vc.view = pdfView
-      
-        vc.viewDidAppear(true)
+        let x = UIView(frame: CGRect.init(x: 0, y: 0, width: 100, height: 100))
+        x.backgroundColor = UIColor.red
+        vc.view.addSubview(x)
         
-      
         if _isBack {
-        
-                controllers.insert(vc, at: 0)
-                if controllers.count > 3  {
-                    controllers.remove(at: 3)
-                }
             
-          
+            controllers.insert(vc, at: 0)
+            if controllers.count > 3  {
+                controllers.remove(at: 3)
+            }
+            
+            
         } else {
             controllers.append(vc)
             if controllers.count > 3  {
                 controllers.remove(at: 0)
             }
         }
-      
-       
-      
+        
+        
+        
         //
         
         return true
@@ -142,6 +144,9 @@ class PDFViewController: UIPageViewController , UIPageViewControllerDataSource, 
         
     }
     
+    func pdfViewOpenPDF(_ sender: PDFView, forRemoteGoToAction action: PDFActionRemoteGoTo) {
+        print("as")
+    }
     /**
      Creates a personalized greeting for a recipient.
      
@@ -166,13 +171,23 @@ class PDFViewController: UIPageViewController , UIPageViewControllerDataSource, 
     
 }
 
-//extension MyPageVC: UIPageViewControllerDelegate {
-//
-//    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
-//        self.view.isUserInteractionEnabled = false
-//    }
-//
-//    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-//        self.view.isUserInteractionEnabled = true
-//    }
-//}
+extension PDFViewController: UIPageViewControllerDelegate {
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        self.isTransitioning = true
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        
+        
+        _isAnimationComplete = true
+        currentPageNumber += _isBack ?   -1 :   1
+        controllers.last?.view.isUserInteractionEnabled = true
+        let nextPageNumber = _isBack ?  currentPageNumber - 1 : currentPageNumber + 1
+        guard addViewController(to:  nextPageNumber) else {
+            print("error not added")
+            currentPageNumber = 0
+            return
+        }
+        
+    }
+}
