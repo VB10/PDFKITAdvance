@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tesx/PDFViewController.swift"
-            timestampString = "572450030.31812"
+            timestampString = "572517637.189258"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
             landmarkName = "setupPDFView()"
             landmarkType = "7">
          </BreakpointContent>
@@ -218,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tesx/PDFViewController.swift"
-            timestampString = "572450030.319896"
+            timestampString = "572517637.189625"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
             landmarkName = "setupPDFView()"
             landmarkType = "7">
          </BreakpointContent>
@@ -230,31 +230,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Tesx/PDFViewController.swift"
-            timestampString = "572450030.320518"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "addViewController()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tesx/PDFViewController.swift"
-            timestampString = "572450030.321059"
+            timestampString = "572517637.1898561"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "addViewController(to:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -266,27 +250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tesx/PDFViewController.swift"
-            timestampString = "572450030.321614"
+            timestampString = "572517637.190082"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "199"
-            endingLineNumber = "199"
-            landmarkName = "pageViewController(_:viewControllerAfter:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Tesx/PDFViewController.swift"
-            timestampString = "572450030.322145"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "addViewController(to:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -298,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tesx/PDFViewController.swift"
-            timestampString = "572450030.3226089"
+            timestampString = "572517637.190304"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
             landmarkName = "addViewController(to:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -310,31 +278,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tesx/PDFViewController.swift"
-            timestampString = "572450030.32306"
+            timestampString = "572517637.190522"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "beginAppearanceTransition(_:animated:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Tesx/PDFViewController.swift"
-            timestampString = "572450030.3234971"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
             landmarkName = "addViewControllerBack(to:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -346,43 +298,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tesx/PDFViewController.swift"
-            timestampString = "572450030.32392"
+            timestampString = "572517637.190737"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "198"
-            endingLineNumber = "198"
-            landmarkName = "pageViewController(_:viewControllerAfter:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Tesx/PDFViewController.swift"
-            timestampString = "572450030.324345"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "dismiss(animated:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Tesx/PDFViewController.swift"
-            timestampString = "572450030.324721"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "addViewController(to:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -390,31 +310,31 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tesx/PDFViewController.swift"
-            timestampString = "572450030.325086"
+            timestampString = "572517637.190948"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "190"
-            endingLineNumber = "190"
-            landmarkName = "pageViewController(_:viewControllerAfter:)"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "addViewController(to:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tesx/PDFViewController.swift"
-            timestampString = "572450030.325438"
+            timestampString = "572517637.191161"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "194"
-            endingLineNumber = "194"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
             landmarkName = "pageViewController(_:viewControllerAfter:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -426,11 +346,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tesx/PDFViewController.swift"
-            timestampString = "572450030.325739"
+            timestampString = "572517637.191378"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "setupPDFView()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tesx/PDFViewController.swift"
+            timestampString = "572517637.19159"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
+            landmarkName = "pageViewController(_:viewControllerAfter:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tesx/PDFViewController.swift"
+            timestampString = "572517637.1918041"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
             landmarkName = "addViewController(to:)"
             landmarkType = "7">
          </BreakpointContent>
