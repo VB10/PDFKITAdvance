@@ -70,7 +70,7 @@ class PDFViewController: UIPageViewController , UIPageViewControllerDataSource ,
         pdfView.document = pdfDocument
         pdfView.displayMode = .singlePage
         pdfView.usePageViewController(true)
-        pdfView.isUserInteractionEnabled = true
+        pdfView.isUserInteractionEnabled = false
         pdfView.go(to: page)
         let vc = UIViewController()
         vc.view = pdfView
@@ -143,7 +143,6 @@ extension PDFViewController: UIPageViewControllerDelegate {
      */
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         currentPageNumber += _isBack ?   -1 :   1
-        controllers.last?.view.isUserInteractionEnabled = true
         let nextPageNumber = _isBack ?  currentPageNumber - 1 : currentPageNumber + 1
         guard addViewController(to:  nextPageNumber) else {
             print("error not added")
